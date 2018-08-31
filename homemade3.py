@@ -30,13 +30,9 @@ def GetPs():
 		fil = s[s['Имя образа'].str.contains(word, na = False)]
 		if word  == 'exit':
 			y = 2
-			
-		
-		
-		
 
 x = 1
-while x == 1:	
+while x == 1:
 	print ("Введите команду")
 	command = input()
 	if command == 'gethostname':
