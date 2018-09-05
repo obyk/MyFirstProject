@@ -22,6 +22,7 @@ def GetIP():
 def GetPs():
   tasks = subprocess.check_output(['tasklist']).decode('cp866', 'ignore').split("\r\n")
   reader = csv.reader(tasks)
+  print(reader)
   for row in reader:
     print(" ".join(row))
 
@@ -37,20 +38,24 @@ def PsFilter():
 
 x = 1
 while x == 1:
-  print ("Введите команду")
+  t = ("1.Имя компьютера;2.Дата;3.IP адрес;4.Список процессов;5.Поиск процесса;6.Выход;Для продолжения введите код команды")
+  li = str(t).split(';')
+  for row in li:
+    print("".join(row))
+  
   command = input()
-  if command == 'gethostname':
-    GetHostName()
-  elif command == 'getdate':
-    GetDate()
-  elif command == 'getip':
-    GetIP()
-  elif command == 'exit':
-    x = 2
-  elif command == 'getps':
-    GetPs()
-  elif command == 'filter':
-    PsFilter()
-  else: print ("Неверная команда!")
+  if command == '1':
+      GetHostName()
+  elif command == '2':
+      GetDate()
+  elif command == '3':
+      GetIP()
+  elif command == '6':
+      x = 2
+  elif command == '4':
+      GetPs()
+  elif command == '5':
+      PsFilter()
+      #else: print ("Неверная команда!")
 
 print ("До скорой встречи!")
