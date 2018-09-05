@@ -56,6 +56,6 @@ while x == 1:
       GetPs()
   elif command == '5':
       PsFilter()
-      #else: print ("Неверная команда!")
+  else: print ("Неверная команда!")
 
 print ("До скорой встречи!")
