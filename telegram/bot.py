@@ -13,8 +13,10 @@ def Get_ip(message):
  ip = (ip_str.replace ('b','')).replace ("'",'')
  sent = bot.send_message(message.chat.id, ip)
 
-proxy = {'http' : 'http://139.180.209.183:8080'}
-appid = "3c6d91c05c75253f2514af4a8a8d3d2c"
+proxy = {'http': 'http://64.13.147.154:60837'}
+appid = config.appid
+
+        
 
 @bot.message_handler(commands=['погода'])
 def Get_weather_mess(message):
