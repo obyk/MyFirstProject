@@ -1,5 +1,3 @@
-
-
 import telebot
 import requests
 import config
