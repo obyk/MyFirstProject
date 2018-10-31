@@ -11,11 +11,11 @@ data = response.json()
 condition = (data['weather'][0]['description'])
 temp = (data['main']['temp'])
 
-#прогноз
+#прогноз на 10 дней
 response = requests.post(config.Get_Forecast,proxies=proxy,params={'units': 'metric', 'lang': 'ru', 'APPID': appid})
 data1 = response.json()
 for i in data1['list']:
-    forecast = (i['dt_txt'])[:16] + ' ' + '{0:+3.0f}'.format(i['main']['temp'])+ '°C' + ' ' + (i['weather'][0]['description'])
+    (i['dt_txt'])[:16] + ' ' + '{0:+3.0f}'.format(i['main']['temp'])+ '°C' + ' ' + (i['weather'][0]['description'])
 
 #прогноз на завтра
 response = requests.post(config.Get_Forecast,proxies=proxy,params={'units': 'metric', 'lang': 'ru', 'APPID': appid})
