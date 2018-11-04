@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 import telebot
 import requests
 import config
