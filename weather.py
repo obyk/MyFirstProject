@@ -5,6 +5,7 @@ import tokapi
 proxy = config.proxy
 appid = tokapi.appid
 
+
 #погода
 response = requests.post(config.Get_Weather,proxies=proxy,params={'units': 'metric', 'lang': 'ru', 'APPID': appid})
 data = response.json()
