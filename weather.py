@@ -2,41 +2,24 @@ import requests
 import config
 import tokapi
 
-proxy = config.proxy
-appid = tokapi.appid
-
 
 #погода
-response = requests.post(config.Get_Weather,proxies=proxy,params={'units': 'metric', 'lang': 'ru', 'APPID': appid})
+response = requests.post(tokapi.Get_Weather,params={'units': 'metric', 'lang': 'ru'})
 data = response.json()
-condition = (data['weather'][0]['description'])
-temp = (data['main']['temp'])
+condition = str(data['current']['condition']['text'])
+temp = str(data['current']['temp_c'])
+current = condition + ' ' + temp + '°C'
 
-
-#прогноз на 5 дней
-response = requests.post(config.Get_Forecast,proxies=proxy,params={'units': 'metric', 'lang': 'ru', 'APPID': appid})
+#прогноз на 7 дней
+response = requests.post(tokapi.Get_Forecast,params={'units': 'metric', 'lang': 'ru'})
 data1 = response.json()
-for i in data1['list']:
-    (i['dt_txt'])[:16] + ' ' + '{0:+3.0f}'.format(i['main']['temp'])+ '°C' + ' ' + (i['weather'][0]['description'])
+for i in data1['forecast']['forecastday']:
+    forecast = str(i['date']) + ' ' + (str(i['day']['avgtemp_c']))+ '°C' + ' ' + (str(i['day']['condition']['text']))
 
 #прогноз на завтра
-response = requests.post(config.Get_Forecast,proxies=proxy,params={'units': 'metric', 'lang': 'ru', 'APPID': appid})
+response = requests.post(tokapi.Get_Forecast,params={'units': 'metric', 'lang': 'ru'})
 data = response.json()
-cond = (data['list'][7]['weather'][0]['description'])
-day = (data['list'][7]['dt_txt'][:16])
-tem = (data['list'][7]['main']['temp'])
-p = day+' '+ '{0:+3.0f}'.format(tem)+ '°C'+ ' ' + cond
-cond1 = (data['list'][8]['weather'][0]['description'])
-day1 = (data['list'][8]['dt_txt'][:16])
-tem1 = (data['list'][8]['main']['temp'])
-p1 = day1+' '+ '{0:+3.0f}'.format(tem1)+ '°C'+ ' ' + cond1
-cond2 = (data['list'][9]['weather'][0]['description'])
-day2 = (data['list'][9]['dt_txt'][:16])
-tem2 = (data['list'][9]['main']['temp'])
-p2 = day2+' '+ '{0:+3.0f}'.format(tem2)+ '°C'+ ' ' + cond2
-cond3 = (data['list'][10]['weather'][0]['description'])
-day3 = (data['list'][10]['dt_txt'][:16])
-tem3 = (data['list'][10]['main']['temp'])
-p3= day3+' '+ '{0:+3.0f}'.format(tem3)+ '°C'+ ' ' + cond3
-res=p+ ' '+p1+ ' '+p2+' ' +p3
-
+cond = str(data['forecast']['forecastday'][1]['day']['condition']['text'])
+day = str(data['forecast']['forecastday'][1]['date'])
+tem = str(data['forecast']['forecastday'][1]['day']['avgtemp_c'])
+resul = day + ' ' + tem + '°C' + ' ' + cond
