@@ -11,7 +11,7 @@ from telebot import apihelper
 apihelper.proxy = {'https':'socks5://telegram:telegram@tkhpg.teletype.live:1080'}
 
 bot = telebot.TeleBot(tokapi.token)
-
+            
 @bot.message_handler(commands=['ip'])
 def Get_ip(message):
     ip_str = str (requests.get(config.Get_IP).content)
@@ -40,8 +40,8 @@ def callback_inline(call):
         if call.data == "n1":
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=weather.current)
         if call.data == "n2":
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=weather.resul)  
-        
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=weather.resul)          
+       
 if __name__ == '__main__':
      bot.polling(none_stop=True)
 
