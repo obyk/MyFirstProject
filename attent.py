@@ -19,7 +19,7 @@ time = now.hour
 cond = weather.cond
 
 for user in config.users:
-    if cond == 'Местами дождь' or cond== 'Дождь' and today == now.day and time == 20:
+    if 'дождь' in cond and today == now.day and time == 20:
         bot.send_message(user, 'Завтра возможен дождь. Не забудь зонт! Приятного вечера')
         today+=1 
     if 'снег' in cond and today == now.day and time >= 20:
